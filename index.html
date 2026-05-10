@@ -590,32 +590,98 @@ body {
   align-items: flex-start;
 }
 
-/* 消息样式 */
+/* 消息基础样式 */
 .message {
+  box-shadow: none !important;
+  border-width: 0 !important;
+  font-weight: 500 !important;
+  position: relative;
+  overflow: visible !important;
   max-width: 100%;
-  padding: 8px 12px;
-  border-radius: 16px;
   line-height: 1.4;
   word-wrap: break-word;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   font-size: 0.9rem;
-  position: relative;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: opacity 0.2s;
 }
 
 .message:hover {
   opacity: 0.95;
 }
 
-.message.self {
-  background: var(--msg-self);
-  border-bottom-right-radius: 4px;
+/* 接收气泡（对方消息） */
+.message.other {
+  background: linear-gradient(145deg, #FFFFFF 0%, #e1edff 100%) !important;
+  border: none !important;
+  color: #808080 !important;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 1), 0 0 8px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 1), 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 24px !important;
+  padding: 8px 28px 8px 16px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(255, 255, 255, 0.8), -2px 0 4px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(225, 237, 255, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.8) !important;
+  position: relative;
 }
 
-.message.other {
-  background: var(--msg-other);
-  border-bottom-left-radius: 4px;
+/* 发送气泡（自己消息） */
+.message.self {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FFDDE1 100%) !important;
+  border: none !important;
+  color: #AA8C92 !important;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 1), 0 0 8px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 1) !important;
+  border-radius: 24px !important;
+  padding: 8px 28px 8px 28px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(255, 255, 255, 0.8), -2px 0 4px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(255, 221, 225, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.8) !important;
+  position: relative;
+}
+
+/* 发送气泡的前置装饰（左上角）- 仅自己消息 */
+.message.self::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  background-image: url('https://img.sobot.com/c3d7f65e19e748b28fc7e9f989624633/console/wsRes/ticket/20260219/1768af743e16171c0f95c5258f18faeb/IyOmS_1771499166374.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 10;
+}
+
+/* 发送气泡的后置装饰（右上角小点）- 仅自己消息 */
+.message.self::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  background-image: url('https://file.ljcdn.com/psd-sinan-file/prod/appeal_evidence/B18F0AACFB98437E8397ADA69B4434E8/qdqqd.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  filter: blur(0.6px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 10;
+}
+
+/* 接收气泡的后置装饰（右上角小点）- 仅对方消息 */
+.message.other::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
+  background-image: url('https://file.ljcdn.com/psd-sinan-file/prod/appeal_evidence/B18F0AACFB98437E8397ADA69B4434E8/qdqqd.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  filter: blur(0.6px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 10;
 }
 
 .message-time {
